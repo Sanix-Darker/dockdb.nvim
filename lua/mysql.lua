@@ -6,6 +6,12 @@ local M = {}
 function M.BuildMySQLQuery(sql_config, sql_query)
     print("Mysql")
 
+    -- docker run -d \
+    -- -e MYSQL_DATABASE=TESTDB \
+    -- -e MYSQL_USER=u \
+    -- -e MYSQL_PASSWORD=p \
+    -- -e MYSQL_ROOT_PASSWORD=p \
+    -- -p 3306:3306 mysql:latest
     local image_name = 'mysql'
     local sql_command = 'mysql' ..
         " -h ".. sql_config.hostname ..

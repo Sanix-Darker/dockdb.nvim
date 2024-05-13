@@ -5,3 +5,4 @@
 - [ ] Manage an history of previous runed queries.
 - [ ] Replay previous queries.
 - [ ] Fix and optimize all escapes mode ("'/\)
+- [ ] Add nvim options to bump/run/pull those images directly too (with a much more config mode available)

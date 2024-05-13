@@ -5,6 +5,12 @@ local M = {}
 function M.BuildPostgresSQLQuery(sql_config, sql_query)
     print("Psql")
 
+    -- docker run \
+    -- -d --rm \
+    -- -e POSTGRES_PASSWORD=p \
+    -- -e POSTGRES_USER=u \
+    -- -e POSTGRES_DB=TESTDB \
+    -- -p 5432:5432 postgres:latest
     local image_name = 'postgres'
     local sql_command = "bash -c 'PGPASSWORD=".. sql_config.password ..
         " psql" ..
