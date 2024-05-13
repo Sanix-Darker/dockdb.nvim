@@ -1,14 +1,14 @@
 -- imports
-require('mysql')
-require('postgresql')
-require('mongodb')
+local mysql = require('mysql')
+local postgresql = require('postgresql')
+local mongodb = require('mongodb')
 
----@class DckDb
+---@class DockDb
 local M = {}
 
 -- On Mysql execute sql query with the good set of config
 function M.RunMySqlQuery()
-    ExecuteMySQLQuery(
+    mysql.ExecuteMySQLQuery(
         M.opts.mysql,
         table.concat(
             vim.fn.getline("'<", "'>"),
@@ -19,7 +19,7 @@ end
 
 -- On PostgresSql execute sql query with the good set of config
 function M.RunPostgresSqlQuery()
-    ExecutePostgresSQLQuery(
+    postgresql.ExecutePostgresSQLQuery(
         M.opts.postgresql,
         table.concat(
             vim.fn.getline("'<", "'>"),
@@ -31,7 +31,7 @@ end
 -- TODO:
 -- On MongoDB execute query with the good set of config
 function M.RunMongoDbQuery()
-    ExecutePostgresSQLQuery(
+    mongodb.ExecuteMongoDBQuery(
         M.opts.mongodb,
         table.concat(
             vim.fn.getline("'<", "'>"),

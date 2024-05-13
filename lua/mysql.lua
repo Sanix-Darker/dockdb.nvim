@@ -1,8 +1,9 @@
-require('docker')
+---@class MySql
+local M = {}
 
 -- Build a specific query on Mysql with a given config
 ---@return string, string, string
-function BuildMySQLQuery(sql_config, sql_query)
+function M.BuildMySQLQuery(sql_config, sql_query)
     print("Mysql")
 
     local image_name = 'mysql'
@@ -17,8 +18,11 @@ function BuildMySQLQuery(sql_config, sql_query)
 end
 
 -- Build a specific query on Mysql with a given config
-function ExecuteMySQLQuery(sql_config, sql_query)
-    DockerExecute(
-        BuildMySQLQuery(sql_config, sql_query)
+function M.ExecuteMySQLQuery(sql_config, sql_query)
+    local docker = require('docker')
+    docker.DockerExecute(
+        M.BuildMySQLQuery(sql_config, sql_query)
     )
 end
+
+return M

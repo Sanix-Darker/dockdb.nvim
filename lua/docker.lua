@@ -1,16 +1,19 @@
+---@class Docker
+local M = {}
+
 ---Return a container id from image name by running 'docker ps ... | head'
 ---@return string
-function GetDockerContainerID(image_name)
+function M.GetDockerContainerID(image_name)
     local command="docker ps -q --filter ancestor=".. image_name .." | head -n 1"
     local output = vim.fn.systemlist(command)
     return table.concat(output, "\n")
 end
 
 ---Execute Docker command With DB query and CLI binded and print on command prompt
-function DockerExecute(query, command, image_name)
+function M.DockerExecute(query, command, image_name)
     -- Replace the placeholder with the selected text
     local to_execute = "echo -ne '" .. query .. "' |\
-        docker exec -i ".. GetDockerContainerID(image_name) .. " " .. command
+        docker exec -i ".. M.GetDockerContainerID(image_name) .. " " .. command
     print(to_execute)
 
     -- Execute the command and capture the output
@@ -29,3 +32,5 @@ function DockerExecute(query, command, image_name)
         print(output_str)
     end
 end
+
+return M

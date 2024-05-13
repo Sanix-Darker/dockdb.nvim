@@ -1,7 +1,8 @@
-require('docker')
+---@class PostgresSql
+local M = {}
 
 -- Build a given PostgresQuery with a specific config
-function BuildPostgresSQLQuery(sql_config, sql_query)
+function M.BuildPostgresSQLQuery(sql_config, sql_query)
     print("Psql")
 
     local image_name = 'postgres'
@@ -39,11 +40,14 @@ function BuildPostgresSQLQuery(sql_config, sql_query)
 end
 
 -- Execute a given PostgresQuery with a specific config
-function ExecutePostgresSQLQuery(sql_config, sql_query)
-    DockerExecute(
-        BuildPostgresSQLQuery(
+function M.ExecutePostgresSQLQuery(sql_config, sql_query)
+    local docker = require('docker')
+    docker.DockerExecute(
+        M.BuildPostgresSQLQuery(
             sql_config,
             sql_query
         )
     )
 end
+
+return M
