@@ -1,3 +1,5 @@
+require('docker')
+
 -- Build a specific query on Mysql with a given config
 ---@return string, string, string
 function BuildMySQLQuery(sql_config, sql_query)

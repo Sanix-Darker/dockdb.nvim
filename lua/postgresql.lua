@@ -1,3 +1,5 @@
+require('docker')
+
 -- Build a given PostgresQuery with a specific config
 function BuildPostgresSQLQuery(sql_config, sql_query)
     print("Psql")

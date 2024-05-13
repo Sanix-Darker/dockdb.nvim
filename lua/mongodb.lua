@@ -1,3 +1,5 @@
+require('docker')
+
 -- Build a specific query on MongoDB with a given config
 function BuildMongoDBQuery(_, _)
 end
