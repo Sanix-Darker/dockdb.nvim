@@ -128,6 +128,7 @@ Execute the visual selected lines on the first found running container :
 - `DockDbExecuteOracle`
 - `DockDbExecutePostgresSQL`
 
+See [examples](./examples/) for queries to play.
 
 ## SETUP OPTIONS
 
