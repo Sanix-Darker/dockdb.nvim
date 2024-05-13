@@ -10,7 +10,7 @@ function M.ExecuteWithOpts(key, opts, callback)
         opts,
         table.concat(
             vim.fn.getline("'<", "'>"),
-            "\n"
+            " " -- "\n"
         )
     )
 end
