@@ -5,7 +5,7 @@ local M = {}
 function M.RunMySqlQuery()
     local selected_text_as_query = table.concat(vim.fn.getline("'<", "'>"), "\n")
 
-    ExecuteMySQLQuery(
+    require'mysql'.ExecuteMySQLQuery(
         M.opts,
         selected_text_as_query
     )
@@ -18,7 +18,7 @@ function M.RunPostgresSqlQuery()
         "\n"
     )
 
-    ExecutePostgresSQLQuery(
+    require'postgresql'.ExecutePostgresSQLQuery(
         M.opts,
         selected_text_as_query
     )
@@ -32,7 +32,7 @@ function M.RunMongoDbQuery()
         "\n"
     )
 
-    ExecutePostgresSQLQuery(
+    require'mongodb'.ExecutePostgresSQLQuery(
         M.opts,
         selected_text_as_query
     )
