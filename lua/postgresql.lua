@@ -21,7 +21,7 @@ function BuildPostgresSQLQuery(sql_config, sql_query)
     --
     -- All this to have 'ito' --> '\'ito\''
     -- the regex version in lua was not matching perfectly, will fix that later.
-    local tmp_replacer = "XZdd+-"
+    local tmp_replacer = "__XZdd__"
     local formated_sql_query = string.gsub(
         string.gsub(
             string.gsub(
