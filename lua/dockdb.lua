@@ -42,11 +42,6 @@ end
 function M.setup(opts)
     local default_opts = opts
     M.opts = vim.tbl_extend("keep", opts, default_opts)
-
-    -- Define a custom command to execute the MySQL query
-    vim.cmd("command! -range DockDbExecuteMongo :lua RunMongoDbQuery()")
-    vim.cmd("command! -range DockDbExecuteMySQL :lua RunMySqlQuery()")
-    vim.cmd("command! -range DockDbExecutePostgresSQL :lua RunPostgresSqlQuery()")
 end
 
 return M
