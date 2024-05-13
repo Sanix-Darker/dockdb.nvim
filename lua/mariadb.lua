@@ -9,11 +9,13 @@ end
 function M.ExecuteMariaDBQuery(_, _)
     print("MariaDB")
 
-    -- local image_name = 'xxx'
-    -- local cli = 'yyy'
-    -- require('docker').....
+    -- docker run \
+    -- -e MYSQL_ROOT_PASSWORD=root \
+    -- -d mariadb:latest
+    local image_name = 'mariadb'
+    local cli = 'mariadb'
 
-    error("NotImplemented")
+    error("NotImplemented :: ".. image_name .. " :: " .. cli)
 end
 
 return M
