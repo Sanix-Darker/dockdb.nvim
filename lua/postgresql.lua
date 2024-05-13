@@ -45,30 +45,15 @@ function M.BuildPostgresSQLQuery(sql_config, sql_query)
     return formated_sql_query, sql_command, image_name
 end
 
---Format print the output of the command executed
-function M.FormatOutPut(output_str)
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-    -- Display the output in the command section
-    local success, _ = pcall(function()
-        vim.api.nvim_command("echo -ne '" .. vim.fn.escape(output_str, "'") .. "'")
-        return true
-    end)
-    -- in case of error just simple print
-    if not success then
-        print(output_str)
-    end
-end
-
 -- Execute a given PostgresQuery with a specific config
 function M.ExecutePostgresSQLQuery(sql_config, sql_query)
     local docker = require('docker')
-    local out_str = docker.DockerExecute(
+    docker.DockerExecute(
         M.BuildPostgresSQLQuery(
             sql_config,
             sql_query
         )
     )
-    M.FormatOutPut(out_str)
 end
 
 return M
