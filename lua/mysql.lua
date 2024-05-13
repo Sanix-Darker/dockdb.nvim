@@ -24,6 +24,7 @@ function M.BuildMySQLQuery(sql_config, sql_query)
 end
 
 --Format print the output of the command executed
+--FIXME: BETTER format this
 function M.FormatOutPut(output_str)
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
     print(output_str)

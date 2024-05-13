@@ -50,7 +50,7 @@ function M.FormatOutPut(output_str)
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
     -- Display the output in the command section
     local success, _ = pcall(function()
-        vim.api.nvim_command("echo '" .. vim.fn.escape(output_str, "'") .. "'")
+        vim.api.nvim_command("echo -ne '" .. vim.fn.escape(output_str, "'") .. "'")
         return true
     end)
     -- in case of error just simple print
