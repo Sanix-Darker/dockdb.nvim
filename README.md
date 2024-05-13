@@ -22,6 +22,7 @@ to an 'already' running `DataBase Container`.
 
 - [x] Query Mysql.
 - [x] Query PostgreSql.
+- [ ] Query Oracle.
 - [ ] Query MongoDB (comming soon).
 - [ ] Query MSsql.
 - [ ] Query Redis.
