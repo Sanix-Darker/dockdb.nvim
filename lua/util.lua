@@ -1,7 +1,9 @@
-function ExecuteWithOpts(key, opts, callback)
+---@class Util
+local M = {}
 
+function M.ExecuteWithOpts(key, opts, callback)
     if opts == nil then
-        error("No '".. key .."' config opts found !")
+        error("ERROR: No '".. key .."' config options found !")
     end
 
     callback(
@@ -13,3 +15,4 @@ function ExecuteWithOpts(key, opts, callback)
     )
 end
 
+return M
