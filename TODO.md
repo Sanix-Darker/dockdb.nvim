@@ -5,3 +5,4 @@
 - [ ] Manage an history of previous runed queries.
 - [ ] Replay previous queries.
 - [ ] Fix and optimize all escapes mode ("'/\)
+- [ ] Add an example folders with all playground sample queries to execute for each engine.
