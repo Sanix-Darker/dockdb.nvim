@@ -34,7 +34,7 @@ describe('BuildMySQLQuery', function()
         local sql_query = 'SELECT * FROM my_table'
 
         local expected_query = 'SELECT * FROM my_table'
-        local expected_command = 'mysql -h localhost -P 3306 -u user -ppassword -D my_database'
+        local expected_command = "bash -c 'MYSQL_PWD=password mysql -h localhost -P 3306 -u user -D my_database'"
         local expected_image_name = 'mysql'
 
         local query, command, image_name = Mysql.BuildMySQLQuery(sql_config, sql_query)
