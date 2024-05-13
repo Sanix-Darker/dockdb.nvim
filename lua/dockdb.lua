@@ -1,40 +1,42 @@
+-- imports
+require('mysql')
+require('postgresql')
+require('mongodb')
+
 ---@class DckDb
 local M = {}
 
 -- On Mysql execute sql query with the good set of config
 function M.RunMySqlQuery()
-    local selected_text_as_query = table.concat(vim.fn.getline("'<", "'>"), "\n")
-
-    require'mysql'.ExecuteMySQLQuery(
+    ExecuteMySQLQuery(
         M.opts,
-        selected_text_as_query
+        table.concat(
+            vim.fn.getline("'<", "'>"),
+            "\n"
+        )
     )
 end
 
 -- On PostgresSql execute sql query with the good set of config
 function M.RunPostgresSqlQuery()
-    local selected_text_as_query = table.concat(
-        vim.fn.getline("'<", "'>"),
-        "\n"
-    )
-
-    require'postgresql'.ExecutePostgresSQLQuery(
+    ExecutePostgresSQLQuery(
         M.opts,
-        selected_text_as_query
+        table.concat(
+            vim.fn.getline("'<", "'>"),
+            "\n"
+        )
     )
 end
 
 -- TODO:
 -- On MongoDB execute query with the good set of config
 function M.RunMongoDbQuery()
-    local selected_text_as_query = table.concat(
-        vim.fn.getline("'<", "'>"),
-        "\n"
-    )
-
-    require'mongodb'.ExecutePostgresSQLQuery(
+    ExecutePostgresSQLQuery(
         M.opts,
-        selected_text_as_query
+        table.concat(
+            vim.fn.getline("'<", "'>"),
+            "\n"
+        )
     )
 end
 
