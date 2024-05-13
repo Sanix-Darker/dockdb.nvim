@@ -1,0 +1,7 @@
+*dockdb.txt*
+
+`URL`: https://github.com/Sanix-Darker/dockdb.nvim
+
+`PATH`: ../README.md
+
+vim:ft=help
