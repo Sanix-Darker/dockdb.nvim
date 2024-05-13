@@ -16,8 +16,8 @@ local M = {}
 function M.RunMySqlQuery()
     util.ExecuteWithOpts(
         "MySql",
-        mysql.ExecuteMySQLQuery,
-        M.opts.mysql
+        M.opts.mysql,
+        mysql.ExecuteMySQLQuery
     )
 end
 
@@ -25,8 +25,8 @@ end
 function M.RunPostgresSqlQuery()
     util.ExecuteWithOpts(
         "PostgresSql",
-        postgresql.ExecutePostgresSQLQuery,
-        M.opts.postgresql
+        M.opts.postgresql,
+        postgresql.ExecutePostgresSQLQuery
     )
 end
 
@@ -35,8 +35,8 @@ end
 function M.RunMongoDBQuery()
     util.ExecuteWithOpts(
         "MongoDB",
-        mongodb.ExecuteMongoDBQuery,
-        M.opts.mongodb
+        M.opts.mongodb,
+        mongodb.ExecuteMongoDBQuery
     )
 end
 
@@ -45,8 +45,8 @@ end
 function M.RunMariaDBQuery()
     util.ExecuteWithOpts(
         "MariaDB",
-        mariadb.ExecuteMariaDBQuery,
-        M.opts.mariadb
+        M.opts.mariadb,
+        mariadb.ExecuteMariaDBQuery
     )
 end
 
@@ -55,8 +55,8 @@ end
 function M.RunMSSqlQuery()
     util.ExecuteWithOpts(
         "MSSql",
-        mssql.ExecuteMSSqlQuery,
-        M.opts.mssql
+        M.opts.mssql,
+        mssql.ExecuteMSSqlQuery
     )
 end
 
@@ -65,8 +65,8 @@ end
 function M.RunOracleDBQuery()
     util.ExecuteWithOpts(
         "MSSql",
-        oracle.ExecuteOracleDBQuery,
-        M.opts.oracle
+        M.opts.oracle,
+        oracle.ExecuteOracleDBQuery
     )
 end
 
