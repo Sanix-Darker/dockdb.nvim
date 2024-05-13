@@ -23,12 +23,22 @@ function M.BuildMySQLQuery(sql_config, sql_query)
     return sql_query, sql_command, image_name
 end
 
+--Format print the output of the command executed
+function M.FormatOutPut(output_str)
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print(output_str)
+end
+
 -- Build a specific query on Mysql with a given config
 function M.ExecuteMySQLQuery(sql_config, sql_query)
     local docker = require('docker')
-    docker.DockerExecute(
-        M.BuildMySQLQuery(sql_config, sql_query)
+    local out_str = docker.DockerExecute(
+        M.BuildMySQLQuery(
+            sql_config,
+            sql_query
+        )
     )
+    M.FormatOutPut(out_str)
 end
 
 return M

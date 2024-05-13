@@ -10,6 +10,7 @@ function M.GetDockerContainerID(image_name)
 end
 
 ---Execute Docker command With DB query and CLI binded and print on command prompt
+---@return string
 function M.DockerExecute(query, command, image_name)
     -- Replace the placeholder with the selected text
     local to_execute = "echo -ne '" .. query .. "' |\
@@ -19,18 +20,7 @@ function M.DockerExecute(query, command, image_name)
     -- Execute the command and capture the output
     local output = vim.fn.systemlist(to_execute)
     -- Format the output as a single string
-    local output_str = table.concat(output, "\n")
-
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-    -- Display the output in the command section
-    local success, _ = pcall(function()
-        vim.api.nvim_command("echo '" .. vim.fn.escape(output_str, "'") .. "'")
-        return true
-    end)
-    -- in case of error just simple print
-    if not success then
-        print(output_str)
-    end
+    return table.concat(output, "\n")
 end
 
 return M
