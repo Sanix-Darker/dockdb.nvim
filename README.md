@@ -18,7 +18,7 @@ to an 'already' running `DataBase Container`.
 
 - [x] Query Mysql.
 - [x] Query PostgreSql.
-- [-] Query MongoDB.
+- [ ] Query MongoDB (comming soon).
 - [ ] Query MSsql.
 - [ ] Query Redis.
 - [ ] Query MemCached.
@@ -54,9 +54,10 @@ The simple idea behind this plugin is to:
     Then in your `init.lua` file you can just run :
 
     ```lua
-    require('dockdb.nvim').setup()
-    -- if empty, default configs will be apply depending on the database service
-    -- you choose to run query on.
+    require('dockdb.nvim').setup({
+        -- mandatory
+        -- your config should be explicitelly provided
+    })
     ```
 
 - Using Lazy.nvim :
@@ -79,8 +80,7 @@ The simple idea behind this plugin is to:
 ## HOW TO USE
 
 - Select a bunch of lines (your query).
-- Run it depending on the Backend.
-- Get's output.
+- Execute depending on the Backend and get output in Command Line section.
 
 ## COMMANDS
 

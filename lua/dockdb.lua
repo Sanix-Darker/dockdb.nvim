@@ -3,19 +3,6 @@ local M = {}
 
 -- On Mysql execute sql query with the good set of config
 function M.RunMySqlQuery()
-    local default_mysql =  {
-        username = 'root',
-        password = 'toor',
-        database = 'TESTDB',
-        hostname = 'localhost',
-        port = '3306'
-    }
-
-    -- if nil, we set default ones
-    if M.opts == nil then
-        M.opts = default_mysql
-    end
-
     local selected_text_as_query = table.concat(vim.fn.getline("'<", "'>"), "\n")
 
     ExecuteMySQLQuery(
@@ -26,19 +13,6 @@ end
 
 -- On PostgresSql execute sql query with the good set of config
 function M.RunPostgresSqlQuery()
-    local default_pg =  {
-        username = 'postgres',
-        password = 'postgres',
-        database = 'TESTDB',
-        hostname = 'localhost',
-        port = '5432'
-    }
-
-    -- if nil, we set default ones
-    if M.opts == nil then
-        M.opts = default_pg
-    end
-
     local selected_text_as_query = table.concat(
         vim.fn.getline("'<", "'>"),
         "\n"
@@ -53,19 +27,6 @@ end
 -- TODO:
 -- On MongoDB execute query with the good set of config
 function M.RunMongoDbQuery()
-    local default_mongo = {
-        username = 'mongo',
-        password = 'mongo',
-        database = 'TESTDB',
-        hostname = 'localhost',
-        port = '5432'
-    }
-
-    -- if nil, we set default ones
-    if M.opts == nil then
-        M.opts = default_mongo
-    end
-
     local selected_text_as_query = table.concat(
         vim.fn.getline("'<", "'>"),
         "\n"
