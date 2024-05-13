@@ -2,6 +2,10 @@
 
 > This plugin is on *DEVELOPMENT MODE*, expect bugs and *BREAKING CHANGES* if using it for now.
 
+
+https://github.com/Sanix-Darker/dockdb.nvim/assets/22576758/08160855-4ba4-47de-a9ba-ac5d218a92db
+
+
 ## WHY
 
 While working with `SQL`, i wanted to bind my nvim flow with the way i run and test queries.
