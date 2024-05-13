@@ -72,14 +72,35 @@ The simple idea behind this plugin is to:
       {
         "Sanix-Darker/dockdb.nvim",
         config = true,
-        cmd = { "ExecuteMySQLQuery" },  -- optional, make the plugin loads at cmd executed
       },
     }
     ```
 
 ## HOW TO USE
 
-- Select a bunch of lines (your query).
+- SetUp and start a Database Container depending on your choice:
+    With given .env files :
+    ```
+    # .env.psql
+    POSTGRES_PASSWORD=p
+    POSTGRES_USER=u
+    POSTGRES_DB=TESTDB
+
+    # .env.mysql
+    MYSQL_DATABASE=TESTDB
+    MYSQL_USER=u
+    MYSQL_PASSWORD=p
+    MYSQL_ROOT_PASSWORD=p
+
+    # ...
+    ```
+
+    - PostgreSql : `docker run -d --rm --env-file .env.psql -p 5432:5432 postgres:latest`
+    - Mysql : `docker run -d --env-file .env.mysql -p 3306:3306 mysql:latest`
+    - MongoDB : `docker run --env-file .env.mongodb -p 27017:27017 mongodb:latest`
+    ...
+
+- In your Code Editor, select a bunch of lines (your query).
 - Execute depending on the Backend and get output in Command Line section.
 
 ## COMMANDS
@@ -94,24 +115,28 @@ The simple idea behind this plugin is to:
 Options values are extremly flexible depending on the database you're using,
 for example :
 ```lua
-local pg_opts = {
-    username = 'postgres',
-    password = 'postgres',
-    database = 'TESTDB',
-    hostname = 'localhost',
-    port = '5432'
-}
--- or
-local redis_opts = {
-    port = '6379',
-    bind = '127.0.0.1',
-    database = 0,
-    requirepass = "your_password",
+local dockdb_ops = {
+    mysql = {
+        username = 'u',
+        password = 'p',
+        database = 'TESTDB',
+        hostname = 'localhost',
+        port = '3306'
+    },
+    postgresql = {
+        username = 'u',
+        password = 'p',
+        database = 'TESTDB',
+        hostname = 'localhost',
+        port = '5432'
+    },
+    mongodb = {}
+    -- ....
 }
 -- ... and so on
 -- then forward it to dockdb
 -- and you're all set
-require("dockdb.nvim").setup(opts)
+require("dockdb.nvim").setup(dockdb_ops)
 ```
 
 ## NOTE

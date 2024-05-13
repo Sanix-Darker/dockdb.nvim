@@ -9,7 +9,7 @@ local M = {}
 -- On Mysql execute sql query with the good set of config
 function M.RunMySqlQuery()
     ExecuteMySQLQuery(
-        M.opts,
+        M.opts.mysql,
         table.concat(
             vim.fn.getline("'<", "'>"),
             "\n"
@@ -20,7 +20,7 @@ end
 -- On PostgresSql execute sql query with the good set of config
 function M.RunPostgresSqlQuery()
     ExecutePostgresSQLQuery(
-        M.opts,
+        M.opts.postgresql,
         table.concat(
             vim.fn.getline("'<", "'>"),
             "\n"
@@ -32,7 +32,7 @@ end
 -- On MongoDB execute query with the good set of config
 function M.RunMongoDbQuery()
     ExecutePostgresSQLQuery(
-        M.opts,
+        M.opts.mongodb,
         table.concat(
             vim.fn.getline("'<", "'>"),
             "\n"
