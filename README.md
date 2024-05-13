@@ -87,14 +87,16 @@ The simple idea behind this plugin is to:
 - SetUp and start a Database Container depending on your choice:
     With given .env files :
 
+    - PostgreSql : `docker run -d --rm --env-file .env.psql -p 5432:5432 postgres:latest`
+
     ```
     # .env.psql
     POSTGRES_PASSWORD=p
     POSTGRES_USER=u
     POSTGRES_DB=TESTDB
     ```
-    - PostgreSql : `docker run -d --rm --env-file .env.psql -p 5432:5432 postgres:latest`
 
+    - Mysql : `docker run -d --env-file .env.mysql -p 3306:3306 mysql:latest`
 
     ```
     # .env.mysql
@@ -103,24 +105,28 @@ The simple idea behind this plugin is to:
     MYSQL_PASSWORD=p
     MYSQL_ROOT_PASSWORD=p
     ```
-    - Mysql : `docker run -d --env-file .env.mysql -p 3306:3306 mysql:latest`
 
+    - MongoDB : `docker run --env-file .env.mongodb -p 27017:27017 mongodb:latest`
 
     ```
     # .env.mongodb
 
     ...comming soon..
     ```
-    - MongoDB : `docker run --env-file .env.mongodb -p 27017:27017 mongodb:latest`
 
 - In your Code Editor, select a bunch of lines (your query).
 - Execute depending on the Backend and get output in Command Line section.
 
 ## COMMANDS
 
-- `DockDbExecuteMongo` Execute the visual selected lines on the first found running mysql container.
-- `DockDbExecuteMySQL` Execute the visual selected lines on the first found running mysql container.
-- `DockDbExecutePostgresSQL` Execute the visual selected lines on the first found running postgresql container.
+Execute the visual selected lines on the first found running container :
+
+- `DockDbExecuteMongo`
+- `DockDbExecuteMySQL`
+- `DockDbExecuteMSSQL`
+- `DockDbExecuteMariaDB`
+- `DockDbExecuteOracle`
+- `DockDbExecutePostgresSQL`
 
 
 ## SETUP OPTIONS
