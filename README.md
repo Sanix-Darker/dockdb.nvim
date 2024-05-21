@@ -96,10 +96,10 @@ The simple idea behind this plugin is to:
     POSTGRES_DB=TESTDB
     ```
 
-    - Mysql : `docker run -d --env-file .env.mysql -p 3306:3306 mysql:latest`
+    - Mysql (same for mariadb:latest): `docker run -d --env-file .env.mysql -p 3306:3306 mysql:latest`
 
     ```
-    # .env.mysql
+    # .env.mysql | or .env.mariadb
     MYSQL_DATABASE=TESTDB
     MYSQL_USER=u
     MYSQL_PASSWORD=p
