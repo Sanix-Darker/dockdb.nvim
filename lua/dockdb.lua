@@ -40,7 +40,6 @@ function M.RunMongoDBQuery()
     )
 end
 
--- TODO:
 -- On MariaDB execute query with the good set of config
 function M.RunMariaDBQuery()
     util.ExecuteWithOpts(
