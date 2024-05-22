@@ -1,6 +1,6 @@
 # Dockdb.nvim
 
-> This plugin is on *DEVELOPMENT MODE*, expect bugs and *BREAKING CHANGES* if using it for now.
+> This plugin is on huge *DEVELOPMENT MODE*, expect bugs and *BREAKING CHANGES* if using it for now.
 
 
 https://github.com/Sanix-Darker/dockdb.nvim/assets/22576758/08160855-4ba4-47de-a9ba-ac5d218a92db
@@ -17,17 +17,19 @@ to an 'already' running `DataBase Container`.
 ## REQUIREMENTS
 
 - docker
+- nvim (>= 0.5 recommended)
 
 ## FEATURES
 
 - [x] Query Mysql.
 - [x] Query PostgreSql.
 - [x] Query MariaDB.
-- [ ] Query Oracle (comming soon).
 - [ ] Query MongoDB (comming soon).
+- [ ] Query Oracle (comming soon).
 - [ ] Query MSsql (comming soon).
 - [ ] Query Redis.
 - [ ] Query MemCached.
+- [ ] Query MinIO.
 
 ## PROS
 
@@ -36,7 +38,7 @@ to an 'already' running `DataBase Container`.
 
 ## CONS
 
-- There is no such `session` here, it's a **ONE QUERY HIT**, like a command you run inside a container, from outside, get the output and exit.
+- There is no such `session` YET here, it's a **ONE QUERY HIT**, like a command you run inside a container, from outside, get the output and exit.
 - Ideal only for local development.
 
 ## HOW DOES IT WORK
