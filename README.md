@@ -86,36 +86,7 @@ The simple idea behind this plugin is to:
 
 ## HOW TO USE
 
-- SetUp and start a Database Container depending on your choice:
-    With given .env files :
-
-    - PostgreSql : `docker run -d --rm --env-file .env.psql -p 5432:5432 postgres:latest`
-
-    ```
-    # .env.psql
-    POSTGRES_PASSWORD=p
-    POSTGRES_USER=u
-    POSTGRES_DB=TESTDB
-    ```
-
-    - Mysql (same for mariadb:latest): `docker run -d --env-file .env.mysql -p 3306:3306 mysql:latest`
-
-    ```
-    # .env.mysql | or .env.mariadb
-    MYSQL_DATABASE=TESTDB
-    MYSQL_USER=u
-    MYSQL_PASSWORD=p
-    MYSQL_ROOT_PASSWORD=p
-    ```
-
-    - MongoDB : `docker run --env-file .env.mongodb -p 27017:27017 mongodb:latest`
-
-    ```
-    # .env.mongodb
-
-    ...comming soon..
-    ```
-
+- SetUp and start a Database Container depending on your choice, check [./examples/](./examples/).
 - In your Code Editor, select a bunch of lines (your query).
 - Execute depending on the Backend and get output in Command Line section.
 

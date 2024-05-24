@@ -9,3 +9,4 @@
 - [ ] Fix and optimize all escapes mode ("'/\)
 - [ ] Add nvim options to bump/run/pull those images directly too (with a much more config mode available).
 - [ ] List all running docker container related to database DBMS.
+- [ ] Add a CHANGELOG.md to the repo.
