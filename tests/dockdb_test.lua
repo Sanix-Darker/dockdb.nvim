@@ -5,6 +5,7 @@ local Postgresql = require('..lua.postgresql')
 local Oracle = require('..lua.oracle')
 local mongodb= require('..lua.mongodb')
 local redis= require('..lua.redis')
+local memcached= require('..lua.memcached')
 
 local vim = {}
 vim.api = {}
@@ -153,6 +154,26 @@ describe('BuildRedisQuery', function()
         local expected_image_name = 'redis'
 
         local xquery, command, image_name = redis.BuildRedisQuery(config, query)
+        assert.are.equal(expected_query, xquery)
+        assert.are.equal(expected_command, command)
+        assert.are.equal(expected_image_name, image_name)
+    end)
+end)
+
+describe('BuildMemcachedQuery', function()
+    it('should build a Memcached query command with the given config', function()
+        local config = {
+            hostname = 'localhost',
+            port = 11211,
+        }
+
+        local query = 'set mykey 0 900 11\r\nHello World'
+
+        local expected_query = 'set mykey 0 900 11\r\nHello World'
+        local expected_command = "bash -c 'telnet localhost 11211'"
+        local expected_image_name = 'memcached'
+
+        local xquery, command, image_name = memcached.BuildMemcachedQuery(config, query)
         assert.are.equal(expected_query, xquery)
         assert.are.equal(expected_command, command)
         assert.are.equal(expected_image_name, image_name)
