@@ -1,5 +1,3 @@
-local docker = require('..lua.docker')
-
 ---@class Memcached
 local M = {}
 M.ENGINE_NAME = "Memcached"
@@ -25,7 +23,7 @@ function M.ExecuteMemcachedQuery(config, query)
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
-    docker.DockerExecute(
+    require("docker").DockerExecute(
         M.BuildMemcachedQuery(
             config,
             query

@@ -1,5 +1,3 @@
-local docker = require('..lua.docker')
-
 ---@class Redis
 local M = {}
 M.ENGINE_NAME = "Redis"
@@ -29,7 +27,7 @@ function M.ExecuteRedisQuery(config, query)
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
-    docker.DockerExecute(
+    require("docker").DockerExecute(
         M.BuildRedisQuery(
             config,
             query
