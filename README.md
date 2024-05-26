@@ -28,7 +28,7 @@ to an 'already' running `DataBase Container`.
 - [x] Query MongoDB.
 - [x] Query Redis.
 - [x] Query MemCached.
-- [ ] Query MSsql (not sure yet, MS sucks... see [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
+- [ ] Query MSsql (not yet [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
 
 ## PROS
 
