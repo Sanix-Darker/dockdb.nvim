@@ -1,5 +1,3 @@
-local docker = require('..lua.docker')
-
 ---@class MongoDB
 local M = {}
 M.ENGINE_NAME = "MongoDB"
@@ -24,7 +22,7 @@ end
 
 -- Execute a specific query on MongoDB with a given config
 function M.ExecuteMongoQuery(config, query)
-    docker.DockerExecute(
+    require("docker").DockerExecute(
         M.BuildMongoQuery(
             config,
             query
