@@ -7,7 +7,7 @@ M.ENGINE_IMAGE = "gvenzl/oracle-xe"
 M.ENGINE_CLI = "sqlplus"
 
 -- Build a specific query on Oracle with a given config
-function M.BuildOracleDBQuery(config, query)
+function M.BuildOracleQuery(config, query)
     print(M.ENGINE_NAME)
 
     -- docker run -d -p 1521:1521 \
@@ -30,13 +30,13 @@ function M.BuildOracleDBQuery(config, query)
 end
 
 -- Execute a specific query on Oracle with a given config
-function M.ExecuteOracleDBQuery(config, query)
+function M.ExecuteOracleQuery(config, query)
     if config == nil then
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
     docker.DockerExecute(
-        M.BuildOracleDBQuery(
+        M.BuildOracleQuery(
             config,
             query
         )

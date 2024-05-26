@@ -38,3 +38,13 @@ $ docker run -d --rm \
     --env-file .env.mongodb \
     -p 27017:27017 mongo:latest
 ```
+
+### [SUPPORTED] REDIS
+
+To start a redis instance, you can run :
+
+```bash
+$ docker run -d --rm \
+    --env-file .env.redis \
+    -p 6479:6479 redis:latest
+```

@@ -4,6 +4,7 @@ local MariaDB = require('..lua.mariadb')
 local Postgresql = require('..lua.postgresql')
 local Oracle = require('..lua.oracle')
 local mongodb= require('..lua.mongodb')
+local redis= require('..lua.redis')
 
 local vim = {}
 vim.api = {}
@@ -63,7 +64,7 @@ describe('BuildMariaDBQuery', function()
         local expected_command = "bash -c 'MYSQL_PWD=password mariadb -u user -D my_database'"
         local expected_image_name = 'mariadb'
 
-        local xquery, command, image_name = MariaDB.BuildMariaDBQuery(config, query)
+        local xquery, command, image_name = MariaDB.BuildMariaQuery(config, query)
         assert.are.equal(expected_query, xquery)
         assert.are.equal(expected_command, command)
         assert.are.equal(expected_image_name, image_name)
@@ -108,7 +109,7 @@ describe('BuildOracleQuery', function()
         local expected_command = "bash -c 'sqlplus user/password@//localhost:1521/XE'"
         local expected_image_name = 'gvenzl/oracle-xe'
 
-        local xquery, command, image_name = Oracle.BuildOracleDBQuery(config, query)
+        local xquery, command, image_name = Oracle.BuildOracleQuery(config, query)
         assert.are.equal(expected_query, xquery)
         assert.are.equal(expected_command, command)
         assert.are.equal(expected_image_name, image_name)
@@ -130,7 +131,28 @@ describe('BuildMongoDBQuery', function()
         local expected_command = "bash -c 'mongosh -u user -p password'"
         local expected_image_name = 'mongo'
 
-        local xquery, command, image_name = mongodb.BuildMongoDBQuery(config, query)
+        local xquery, command, image_name = mongodb.BuildMongoQuery(config, query)
+        assert.are.equal(expected_query, xquery)
+        assert.are.equal(expected_command, command)
+        assert.are.equal(expected_image_name, image_name)
+    end)
+end)
+
+describe('BuildRedisQuery', function()
+    it('should build a Redis query command with the given config', function()
+        local config = {
+            hostname = 'localhost',
+            port = 6479,
+            password = 'password',
+        }
+
+        local query = 'SET xkey "sanix darker" \n GET xkey'
+
+        local expected_query = 'SET xkey "sanix darker" \n GET xkey'
+        local expected_command = "bash -c 'REDIS_PASSWORD=password redis-cli'"
+        local expected_image_name = 'redis'
+
+        local xquery, command, image_name = redis.BuildRedisQuery(config, query)
         assert.are.equal(expected_query, xquery)
         assert.are.equal(expected_command, command)
         assert.are.equal(expected_image_name, image_name)

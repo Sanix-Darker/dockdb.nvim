@@ -7,7 +7,7 @@ M.ENGINE_IMAGE = "mariadb"
 M.ENGINE_CLI = "mariadb"
 
 -- Build a specific query on MariaDB with a given config
-function M.BuildMariaDBQuery(config, query)
+function M.BuildMariaQuery(config, query)
     print(M.ENGINE_NAME)
 
     -- docker run \
@@ -27,13 +27,13 @@ function M.BuildMariaDBQuery(config, query)
 end
 
 -- Execute a specific query on MariaDB with a given config
-function M.ExecuteMariaDBQuery(config, query)
+function M.ExecuteMariaQuery(config, query)
     if config == nil then
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
     docker.DockerExecute(
-        M.BuildMariaDBQuery(
+        M.BuildMariaQuery(
             config,
             query
         )

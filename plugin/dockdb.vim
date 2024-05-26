@@ -6,9 +6,10 @@ if !has('nvim-0.5.0')
 endif
 
 " Those commands define custom commands to execute queries
-command! -range DockDbExecMongo <line1>,<line2>lua require'dockdb'.RunMongoDBQuery()
+command! -range DockDbExecMongo <line1>,<line2>lua require'dockdb'.RunMongoQuery()
 command! -range DockDbExecMySQL <line1>,<line2>lua require'dockdb'.RunMySqlQuery()
 command! -range DockDbExecMSSQL <line1>,<line2>lua require'dockdb'.RunMSSqlQuery()
-command! -range DockDbExecOracle <line1>,<line2>lua require'dockdb'.RunOracleDBQuery()
-command! -range DockDbExecMaria <line1>,<line2>lua require'dockdb'.RunMariaDBQuery()
+command! -range DockDbExecOracle <line1>,<line2>lua require'dockdb'.RunOracleQuery()
+command! -range DockDbExecRedis <line1>,<line2>lua require'dockdb'.RunRedisQuery()
+command! -range DockDbExecMaria <line1>,<line2>lua require'dockdb'.RunMariaQuery()
 command! -range DockDbExecPostgresSQL <line1>,<line2>lua require'dockdb'.RunPostgresSqlQuery()
