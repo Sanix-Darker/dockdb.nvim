@@ -59,11 +59,10 @@ function M.RunMSSqlQuery()
     )
 end
 
--- TODO:
 -- On Oracle execute query with the good set of config
 function M.RunOracleDBQuery()
     util.ExecuteWithOpts(
-        "MSSql",
+        "Oracle",
         M.opts.oracle,
         oracle.ExecuteOracleDBQuery
     )

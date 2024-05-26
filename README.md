@@ -124,12 +124,12 @@ local dockdb_ops = {
     },
     oracle = {
         oracle_sid = 'XE',
-        username = 'system' -- this will be used instead of 'u'
+        username = 'system', -- this will be used instead of 'u'
         port = '1521'
     },
     mongodb = {}
 }
-for engine, conf in pairs(dockdb_ops) do
+for _, config in pairs(dockdb_ops) do
     for k, v in pairs(common_conf) do
         -- You can use this to set the config for a specific
         -- engine to overide the defaulf from common_conf
@@ -139,8 +139,8 @@ for engine, conf in pairs(dockdb_ops) do
         end
     end
 end
--- then forward to dockdb
-require("dockdb.nvim").setup(dockdb_ops)
+-- then we call dockdb
+require("dockdb").setup(dockdb_ops)
 ```
 
 ## NOTE
