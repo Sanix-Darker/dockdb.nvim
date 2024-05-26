@@ -15,4 +15,9 @@ function M.ExecuteWithOpts(key, opts, callback)
     )
 end
 
+function M.EscapeQuotes(strr)
+    -- FIXME: use a proper regex for this in the future
+    return strr
+end
+
 return M

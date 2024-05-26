@@ -20,29 +20,7 @@ function M.BuildPostgresSQLQuery(sql_config, sql_query)
         " -d ".. sql_config.database ..
         "'"
 
-    -- NOTE: CURSED DRAGONS HERE lol,
-    -- FIXME: here am always considering that " '" is the starting quote
-    -- and "'" is the end quote
-    -- replacing first " '" with XZdd+- to prevent the second "'" to be overriden
-    -- then re-replace again
-    --
-    -- All this to have 'ito' --> '\'ito\''
-    -- the regex version in lua was not matching perfectly, will fix that later.
-    local tmp_replacer = "__XZdd__"
-    local formated_sql_query = string.gsub(
-        string.gsub(
-            string.gsub(
-                sql_query,
-                " '",
-                " "..tmp_replacer.."\\"..tmp_replacer..""
-            ),
-            "'",
-            "\\''"
-        ),
-        tmp_replacer,
-        "'"
-    )
-    return formated_sql_query, sql_command, image_name
+    return sql_query, sql_command, image_name
 end
 
 -- Execute a given PostgresQuery with a specific config
