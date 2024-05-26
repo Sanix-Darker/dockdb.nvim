@@ -48,3 +48,17 @@ $ docker run -d --rm \
     --env-file .env.redis \
     -p 6479:6479 redis:latest
 ```
+
+### [SUPPORTED] MEMCACHED
+
+To start a redis instance, you can run :
+
+```bash
+$ docker run -d --rm \
+    -p 11211:11211 memcached:latest
+
+# NOTE: telnet need to be installed
+# You can do that using the root user while the container is running
+# docker exec -u root memcached apt-get update -y
+# docker exec -u root memcached apt-get install -y telnet
+```
