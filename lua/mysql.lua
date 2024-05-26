@@ -20,8 +20,6 @@ function M.BuildMySQLQuery(config, query)
 
     local command = "bash -c 'MYSQL_PWD=".. config.password ..
         " " .. M.ENGINE_CLI ..
-        " -h ".. config.hostname ..
-        " -P ".. config.port ..
         " -u ".. config.username ..
         " -D ".. config.database ..
         "'"

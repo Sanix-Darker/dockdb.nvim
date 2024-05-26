@@ -13,12 +13,10 @@ function M.BuildMongoDBQuery(config, query)
     -- docker run -d --rm \
     -- --env-file .env.mongodb \
     -- -p 27017:27017 mongo:latest
-    local command = "bash -c 'MYSQL_PWD=".. config.password ..
-        " mysql" ..
-        " -h ".. config.hostname ..
-        " -P ".. config.port ..
+    local command = "bash -c '"..
+        M.ENGINE_CLI ..
         " -u ".. config.username ..
-        " -D ".. config.database ..
+        " -p ".. config.password ..
         "'"
 
     return query, command, M.ENGINE_IMAGE

@@ -18,8 +18,6 @@ function M.BuildPostgresSQLQuery(config, query)
     -- -p 5432:5432 postgres:latest
     local command = "bash -c 'PGPASSWORD=".. config.password ..
         " " .. M.ENGINE_CLI ..
-        " -h ".. config.hostname ..
-        " -p ".. config.port ..
         " -U ".. config.username ..
         " -d ".. config.database ..
         "'"

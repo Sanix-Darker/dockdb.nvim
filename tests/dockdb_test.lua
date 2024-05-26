@@ -3,6 +3,8 @@ local Mysql = require('..lua.mysql')
 local MariaDB = require('..lua.mariadb')
 local Postgresql = require('..lua.postgresql')
 local Oracle = require('..lua.oracle')
+local mongodb= require('..lua.mongodb')
+
 local vim = {}
 vim.api = {}
 vim.fn = {}
@@ -36,7 +38,7 @@ describe('BuildMySQLQuery', function()
         local query = 'SELECT * FROM my_table'
 
         local expected_query = 'SELECT * FROM my_table'
-        local expected_command = "bash -c 'MYSQL_PWD=password mysql -h localhost -P 3306 -u user -D my_database'"
+        local expected_command = "bash -c 'MYSQL_PWD=password mysql -u user -D my_database'"
         local expected_image_name = 'mysql'
 
         local xquery, command, image_name = Mysql.BuildMySQLQuery(config, query)
@@ -58,7 +60,7 @@ describe('BuildMariaDBQuery', function()
         local query = 'SELECT * FROM my_table'
 
         local expected_query = 'SELECT * FROM my_table'
-        local expected_command = "bash -c 'MYSQL_PWD=password mariadb -h localhost -P 3306 -u user -D my_database'"
+        local expected_command = "bash -c 'MYSQL_PWD=password mariadb -u user -D my_database'"
         local expected_image_name = 'mariadb'
 
         local xquery, command, image_name = MariaDB.BuildMariaDBQuery(config, query)
@@ -80,7 +82,7 @@ describe('BuildPostgresSQLQuery', function()
         local query = 'SELECT * FROM my_table'
 
         local expected_query = "SELECT * FROM my_table"
-        local expected_command = "bash -c 'PGPASSWORD=password psql -h localhost -p 5432 -U user -d my_database'"
+        local expected_command = "bash -c 'PGPASSWORD=password psql -U user -d my_database'"
         local expected_image_name = 'postgres'
 
         local xquery, command, image_name = Postgresql.BuildPostgresSQLQuery(config, query)
@@ -107,6 +109,28 @@ describe('BuildOracleQuery', function()
         local expected_image_name = 'gvenzl/oracle-xe'
 
         local xquery, command, image_name = Oracle.BuildOracleDBQuery(config, query)
+        assert.are.equal(expected_query, xquery)
+        assert.are.equal(expected_command, command)
+        assert.are.equal(expected_image_name, image_name)
+    end)
+end)
+
+describe('BuildMongoDBQuery', function()
+    it('should build a Mongo query command with the given config', function()
+        local config = {
+            hostname = 'localhost',
+            port = 1521,
+            username = 'user',
+            password = 'password',
+            database = 'my_database',
+        }
+        local query = 'use admin \n show collections'
+
+        local expected_query = "use admin \n show collections"
+        local expected_command = "bash -c 'mongosh -u user -p password'"
+        local expected_image_name = 'mongo'
+
+        local xquery, command, image_name = mongodb.BuildMongoDBQuery(config, query)
         assert.are.equal(expected_query, xquery)
         assert.are.equal(expected_command, command)
         assert.are.equal(expected_image_name, image_name)
