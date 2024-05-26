@@ -1,9 +1,12 @@
 ---@class MariaDB
 local M = {}
+M.ENGINE_NAME = "MariaDB"
+M.ENGINE_IMAGE = "mariadb"
+M.ENGINE_CLI = "mariadb"
 
 -- Build a specific query on MariaDB with a given config
 function M.BuildMariaDBQuery(config, query)
-    print("MariaDB")
+    print(M.ENGINE_NAME)
 
     -- docker run \
     -- -e MYSQL_DATABASE=TESTDB \
@@ -12,20 +15,23 @@ function M.BuildMariaDBQuery(config, query)
     -- -e MYSQL_ROOT_PASSWORD=p \
     -- -d mariadb:latest
 
-    local image_name = 'mariadb'
     local command = "bash -c 'MYSQL_PWD=".. config.password ..
-        " mariadb" ..
+        " " .. M.ENGINE_CLI..
         " -h ".. config.hostname ..
         " -P ".. config.port ..
         " -u ".. config.username ..
         " -D ".. config.database ..
         "'"
 
-    return query, command, image_name
+    return query, command, M.ENGINE_IMAGE
 end
 
 -- Execute a specific query on MariaDB with a given config
 function M.ExecuteMariaDBQuery(config, sql_query)
+    if config == nil then
+        error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
+    end
+
     local docker = require('docker')
     docker.DockerExecute(
         M.BuildMariaDBQuery(

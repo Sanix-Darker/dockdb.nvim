@@ -6,7 +6,6 @@ local mongodb = require('mongodb')
 local mssql = require('mssql')
 local mariadb = require('mariadb')
 local oracle = require('oracle')
-
 local util = require('util')
 
 ---@class DockDb
@@ -15,7 +14,6 @@ local M = {}
 -- On Mysql execute sql query with the good set of config
 function M.RunMySqlQuery()
     util.ExecuteWithOpts(
-        "MySql",
         M.opts.mysql,
         mysql.ExecuteMySQLQuery
     )
@@ -24,7 +22,6 @@ end
 -- On PostgresSql execute sql query with the good set of config
 function M.RunPostgresSqlQuery()
     util.ExecuteWithOpts(
-        "PostgresSql",
         M.opts.postgresql,
         postgresql.ExecutePostgresSQLQuery
     )
@@ -34,7 +31,6 @@ end
 -- On MongoDB execute query with the good set of config
 function M.RunMongoDBQuery()
     util.ExecuteWithOpts(
-        "MongoDB",
         M.opts.mongodb,
         mongodb.ExecuteMongoDBQuery
     )
@@ -43,7 +39,6 @@ end
 -- On MariaDB execute query with the good set of config
 function M.RunMariaDBQuery()
     util.ExecuteWithOpts(
-        "MariaDB",
         M.opts.mariadb,
         mariadb.ExecuteMariaDBQuery
     )
@@ -53,7 +48,6 @@ end
 -- On MSSql execute query with the good set of config
 function M.RunMSSqlQuery()
     util.ExecuteWithOpts(
-        "MSSql",
         M.opts.mssql,
         mssql.ExecuteMSSqlQuery
     )
@@ -62,7 +56,6 @@ end
 -- On Oracle execute query with the good set of config
 function M.RunOracleDBQuery()
     util.ExecuteWithOpts(
-        "Oracle",
         M.opts.oracle,
         oracle.ExecuteOracleDBQuery
     )

@@ -1,12 +1,12 @@
 ---@class MsSql
 local M = {}
-
-local image_name = 'mcr.microsoft.com/mssql/server'
-local cli = 'sqlcmd'
+M.ENGINE_NAME = "MSSql"
+M.ENGINE_IMAGE = "mcr.microsoft.com/mssql/server"
+M.ENGINE_CLI = "sqlcmd"
 
 -- Build a specific query on MsSql with a given config
 function M.BuildMSSqlQuery(_, _)
-    print("MSSql")
+    print(M.ENGINE_NAME)
 
     -- docker run \
     -- -e "ACCEPT_EULA=Y" \
@@ -17,7 +17,7 @@ end
 
 -- Execute a specific query on MsSql with a given config
 function M.ExecuteMSSqlQuery(_, _)
-    error("NotImplemented :: ".. image_name .. " :: " .. cli)
+    error("NotImplemented :: ".. M.ENGINE_NAME)
 end
 
 return M
