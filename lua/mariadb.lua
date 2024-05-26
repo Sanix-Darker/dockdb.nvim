@@ -1,9 +1,14 @@
+local docker = require('..lua.docker')
+
 ---@class MariaDB
 local M = {}
+M.ENGINE_NAME = "MariaDB"
+M.ENGINE_IMAGE = "mariadb"
+M.ENGINE_CLI = "mariadb"
 
 -- Build a specific query on MariaDB with a given config
-function M.BuildMariaDBQuery(sql_config, sql_query)
-    print("MariaDB")
+function M.BuildMariaDBQuery(config, query)
+    print(M.ENGINE_NAME)
 
     -- docker run \
     -- -e MYSQL_DATABASE=TESTDB \
@@ -12,25 +17,25 @@ function M.BuildMariaDBQuery(sql_config, sql_query)
     -- -e MYSQL_ROOT_PASSWORD=p \
     -- -d mariadb:latest
 
-    local image_name = 'mariadb'
-    local sql_command = "bash -c 'MYSQL_PWD=".. sql_config.password ..
-        " mariadb" ..
-        " -h ".. sql_config.hostname ..
-        " -P ".. sql_config.port ..
-        " -u ".. sql_config.username ..
-        " -D ".. sql_config.database ..
+    local command = "bash -c 'MYSQL_PWD=".. config.password ..
+        " " .. M.ENGINE_CLI..
+        " -u ".. config.username ..
+        " -D ".. config.database ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return query, command, M.ENGINE_IMAGE
 end
 
 -- Execute a specific query on MariaDB with a given config
-function M.ExecuteMariaDBQuery(sql_config, sql_query)
-    local docker = require('docker')
+function M.ExecuteMariaDBQuery(config, query)
+    if config == nil then
+        error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
+    end
+
     docker.DockerExecute(
         M.BuildMariaDBQuery(
-            sql_config,
-            sql_query
+            config,
+            query
         )
     )
 end

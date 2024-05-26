@@ -1,9 +1,14 @@
+local docker = require('..lua.docker')
+
 ---@class PostgresSql
 local M = {}
+M.ENGINE_NAME = "PostgresSql"
+M.ENGINE_IMAGE = "postgres"
+M.ENGINE_CLI = "psql"
 
 -- Build a given PostgresQuery with a specific config
-function M.BuildPostgresSQLQuery(sql_config, sql_query)
-    print("Psql")
+function M.BuildPostgresSQLQuery(config, query)
+    print(M.ENGINE_NAME)
 
     -- docker run \
     -- -d --rm \
@@ -11,25 +16,25 @@ function M.BuildPostgresSQLQuery(sql_config, sql_query)
     -- -e POSTGRES_USER=u \
     -- -e POSTGRES_DB=TESTDB \
     -- -p 5432:5432 postgres:latest
-    local image_name = 'postgres'
-    local sql_command = "bash -c 'PGPASSWORD=".. sql_config.password ..
-        " psql" ..
-        " -h ".. sql_config.hostname ..
-        " -p ".. sql_config.port ..
-        " -U ".. sql_config.username ..
-        " -d ".. sql_config.database ..
+    local command = "bash -c 'PGPASSWORD=".. config.password ..
+        " " .. M.ENGINE_CLI ..
+        " -U ".. config.username ..
+        " -d ".. config.database ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return query, command, M.ENGINE_IMAGE
 end
 
 -- Execute a given PostgresQuery with a specific config
-function M.ExecutePostgresSQLQuery(sql_config, sql_query)
-    local docker = require('docker')
+function M.ExecutePostgresSQLQuery(config, query)
+    if config == nil then
+        error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
+    end
+
     docker.DockerExecute(
         M.BuildPostgresSQLQuery(
-            sql_config,
-            sql_query
+            config,
+            query
         )
     )
 end

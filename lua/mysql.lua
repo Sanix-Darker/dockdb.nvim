@@ -1,10 +1,15 @@
+local docker = require('..lua.docker')
+
 ---@class MySql
 local M = {}
+M.ENGINE_NAME = "Mysql"
+M.ENGINE_IMAGE = "mysql"
+M.ENGINE_CLI = "mysql"
 
 -- Build a specific query on Mysql with a given config
 ---@return string, string, string
-function M.BuildMySQLQuery(sql_config, sql_query)
-    print("Mysql")
+function M.BuildMySQLQuery(config, query)
+    print(M.ENGINE_NAME)
 
     -- docker run -d \
     -- -e MYSQL_DATABASE=TESTDB \
@@ -13,25 +18,25 @@ function M.BuildMySQLQuery(sql_config, sql_query)
     -- -e MYSQL_ROOT_PASSWORD=p \
     -- -p 3306:3306 mysql:latest
 
-    local image_name = 'mysql'
-    local sql_command = "bash -c 'MYSQL_PWD=".. sql_config.password ..
-        " mysql" ..
-        " -h ".. sql_config.hostname ..
-        " -P ".. sql_config.port ..
-        " -u ".. sql_config.username ..
-        " -D ".. sql_config.database ..
+    local command = "bash -c 'MYSQL_PWD=".. config.password ..
+        " " .. M.ENGINE_CLI ..
+        " -u ".. config.username ..
+        " -D ".. config.database ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return query, command, M.ENGINE_IMAGE
 end
 
 -- Build a specific query on Mysql with a given config
-function M.ExecuteMySQLQuery(sql_config, sql_query)
-    local docker = require('docker')
+function M.ExecuteMySQLQuery(config, query)
+    if config == nil then
+        error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
+    end
+
     docker.DockerExecute(
         M.BuildMySQLQuery(
-            sql_config,
-            sql_query
+            config,
+            query
         )
     )
 end

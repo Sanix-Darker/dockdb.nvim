@@ -29,7 +29,7 @@ $ docker run -d --rm \
     -p 1521:1521 gvenzl/oracle-xe
 ```
 
-### MONGODB
+### [SUPPORTED] MONGODB
 
 To start a mongoDB instance, you can run :
 
@@ -37,13 +37,4 @@ To start a mongoDB instance, you can run :
 $ docker run -d --rm \
     --env-file .env.mongodb \
     -p 27017:27017 mongo:latest
-```
-
-After that you can run queries directly to create the database and the collections.
-
-```
-> use TESTDB # this will create the database directly
-> db.createCollection("test_collection")
-> show dbs
-> show collections
 ```

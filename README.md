@@ -25,15 +25,15 @@ to an 'already' running `DataBase Container`.
 - [x] Query PostgreSql.
 - [x] Query MariaDB.
 - [x] Query Oracle.
-- [ ] Query MongoDB (comming soon).
-- [ ] Query MSsql (comming soon).
-- [ ] Query Redis.
+- [x] Query MongoDB.
+- [ ] Query Redis(Comming Soon).
+- [ ] Query MinIO(Comming Soon).
 - [ ] Query MemCached.
-- [ ] Query MinIO.
+- [ ] Query MSsql (not sure yet, see [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
 
 ## PROS
 
-- Fast simple and light.
+- Fast, Simple and light.
 - No lua or third-party dependencies.
 
 ## CONS
@@ -105,7 +105,9 @@ local dockdb_ops = {
         username = 'system', -- this will be used instead of 'u'
         port = '1521'
     },
-    mongodb = {}
+    mongodb = {
+        port = '27017'
+    }
 }
 for _, config in pairs(dockdb_ops) do
     for k, v in pairs(common_conf) do

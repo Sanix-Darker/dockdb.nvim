@@ -1,9 +1,14 @@
+local docker = require('..lua.docker')
+
 ---@class Oracle
 local M = {}
+M.ENGINE_NAME = "Oracle"
+M.ENGINE_IMAGE = "gvenzl/oracle-xe"
+M.ENGINE_CLI = "sqlplus"
 
 -- Build a specific query on Oracle with a given config
-function M.BuildOracleDBQuery(sql_config, sql_query)
-    print("Oracle")
+function M.BuildOracleDBQuery(config, query)
+    print(M.ENGINE_NAME)
 
     -- docker run -d -p 1521:1521 \
     -- -e ORACLE_PASSWORD=p \
@@ -12,26 +17,28 @@ function M.BuildOracleDBQuery(sql_config, sql_query)
     -- -e APP_USER_PASSWORD=p \
     -- gvenzl/oracle-xe
 
-    local image_name = 'gvenzl/oracle-xe'
-    local sql_command = "bash -c '" ..
-        "sqlplus" ..
-        " ".. sql_config.username .. -- 'system' should be set here as default
-        "/".. sql_config.password ..
-        "@//".. sql_config.hostname ..
-        ":".. sql_config.port ..
-        "/".. sql_config.oracle_sid ..
+    local command = "bash -c '" ..
+        M.ENGINE_CLI ..
+        " ".. config.username .. -- 'system' should be set here as default
+        "/".. config.password ..
+        "@//".. config.hostname ..
+        ":".. config.port ..
+        "/".. config.oracle_sid ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return query, command, M.ENGINE_IMAGE
 end
 
 -- Execute a specific query on Oracle with a given config
-function M.ExecuteOracleDBQuery(sql_config, sql_query)
-    local docker = require('docker')
+function M.ExecuteOracleDBQuery(config, query)
+    if config == nil then
+        error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
+    end
+
     docker.DockerExecute(
         M.BuildOracleDBQuery(
-            sql_config,
-            sql_query
+            config,
+            query
         )
     )
 end
