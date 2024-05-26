@@ -7,7 +7,7 @@ M.ENGINE_IMAGE = "mongo"
 M.ENGINE_CLI = "mongosh"
 
 -- Build a specific query on MongoDB with a given config
-function M.BuildMongoDBQuery(config, query)
+function M.BuildMongoQuery(config, query)
     print(M.ENGINE_NAME)
 
     -- docker run -d --rm \
@@ -23,9 +23,9 @@ function M.BuildMongoDBQuery(config, query)
 end
 
 -- Execute a specific query on MongoDB with a given config
-function M.ExecuteMongoDBQuery(config, query)
+function M.ExecuteMongoQuery(config, query)
     docker.DockerExecute(
-        M.BuildMongoDBQuery(
+        M.BuildMongoQuery(
             config,
             query
         )

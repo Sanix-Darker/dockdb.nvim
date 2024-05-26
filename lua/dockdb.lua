@@ -1,11 +1,11 @@
--- engine imports
---
+-- Engine imports
 local mysql = require('mysql')
 local postgresql = require('postgresql')
 local mongodb = require('mongodb')
 local mssql = require('mssql')
 local mariadb = require('mariadb')
 local oracle = require('oracle')
+local redis = require('redis')
 local util = require('util')
 
 ---@class DockDb
@@ -28,18 +28,18 @@ function M.RunPostgresSqlQuery()
 end
 
 -- On MongoDB execute query with the good set of config
-function M.RunMongoDBQuery()
+function M.RunMongoQuery()
     util.ExecuteWithOpts(
         M.opts.mongodb,
-        mongodb.ExecuteMongoDBQuery
+        mongodb.ExecuteMongoQuery
     )
 end
 
 -- On MariaDB execute query with the good set of config
-function M.RunMariaDBQuery()
+function M.RunMariaQuery()
     util.ExecuteWithOpts(
         M.opts.mariadb,
-        mariadb.ExecuteMariaDBQuery
+        mariadb.ExecuteMariaQuery
     )
 end
 
@@ -53,10 +53,18 @@ function M.RunMSSqlQuery()
 end
 
 -- On Oracle execute query with the good set of config
-function M.RunOracleDBQuery()
+function M.RunOracleQuery()
     util.ExecuteWithOpts(
         M.opts.oracle,
-        oracle.ExecuteOracleDBQuery
+        oracle.ExecuteOracleQuery
+    )
+end
+
+-- On Redis execute query with the good set of config
+function M.RunRedisQuery()
+    util.ExecuteWithOpts(
+        M.opts.redis,
+        redis.ExecuteRedisQuery
     )
 end
 
