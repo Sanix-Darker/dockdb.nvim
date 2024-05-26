@@ -1,3 +1,5 @@
+local docker = require('..lua.docker')
+
 ---@class Oracle
 local M = {}
 M.ENGINE_NAME = "Oracle"
@@ -33,7 +35,6 @@ function M.ExecuteOracleDBQuery(config, query)
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
-    local docker = require('docker')
     docker.DockerExecute(
         M.BuildOracleDBQuery(
             config,

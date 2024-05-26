@@ -1,3 +1,5 @@
+local docker = require('..lua.docker')
+
 ---@class MySql
 local M = {}
 M.ENGINE_NAME = "Mysql"
@@ -33,7 +35,6 @@ function M.ExecuteMySQLQuery(config, query)
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
-    local docker = require('docker')
     docker.DockerExecute(
         M.BuildMySQLQuery(
             config,

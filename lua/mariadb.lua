@@ -1,3 +1,5 @@
+local docker = require('..lua.docker')
+
 ---@class MariaDB
 local M = {}
 M.ENGINE_NAME = "MariaDB"
@@ -32,7 +34,6 @@ function M.ExecuteMariaDBQuery(config, sql_query)
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
-    local docker = require('docker')
     docker.DockerExecute(
         M.BuildMariaDBQuery(
             config,

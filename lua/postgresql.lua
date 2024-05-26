@@ -1,3 +1,5 @@
+local docker = require('..lua.docker')
+
 ---@class PostgresSql
 local M = {}
 M.ENGINE_NAME = "PostgresSql"
@@ -31,7 +33,6 @@ function M.ExecutePostgresSQLQuery(config, query)
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
 
-    local docker = require('docker')
     docker.DockerExecute(
         M.BuildPostgresSQLQuery(
             config,
