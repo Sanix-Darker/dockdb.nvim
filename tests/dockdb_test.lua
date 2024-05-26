@@ -170,7 +170,7 @@ describe('BuildMemcachedQuery', function()
         local query = 'set mykey 0 900 11\r\nHello World'
 
         local expected_query = 'set mykey 0 900 11\r\nHello World'
-        local expected_command = "bash -c 'telnet localhost 11211'"
+        local expected_command = "telnet localhost 11211"
         local expected_image_name = 'memcached'
 
         local xquery, command, image_name = memcached.BuildMemcachedQuery(config, query)

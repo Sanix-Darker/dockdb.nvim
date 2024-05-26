@@ -1,2 +1,2 @@
-set mykey 0 900 11\r\nHello World
-get mykey
+set ykey 0 900 11\r\nHello World
+get ykey

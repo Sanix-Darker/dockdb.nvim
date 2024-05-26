@@ -14,11 +14,7 @@ function M.BuildMemcachedQuery(config, query)
     -- docker run -d \
     -- -p 6479:6479 memcached:latest
 
-    local command = "bash -c '"..
-    M.ENGINE_CLI ..
-    " " .. config.hostname ..
-    " " .. config.port ..
-    "'"
+    local command = M.ENGINE_CLI .. " " .. config.hostname .. " " .. config.port
 
     return query, command, M.ENGINE_IMAGE
 end
