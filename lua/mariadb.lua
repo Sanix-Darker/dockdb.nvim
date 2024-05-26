@@ -2,7 +2,7 @@
 local M = {}
 
 -- Build a specific query on MariaDB with a given config
-function M.BuildMariaDBQuery(sql_config, sql_query)
+function M.BuildMariaDBQuery(config, query)
     print("MariaDB")
 
     -- docker run \
@@ -13,23 +13,23 @@ function M.BuildMariaDBQuery(sql_config, sql_query)
     -- -d mariadb:latest
 
     local image_name = 'mariadb'
-    local sql_command = "bash -c 'MYSQL_PWD=".. sql_config.password ..
+    local command = "bash -c 'MYSQL_PWD=".. config.password ..
         " mariadb" ..
-        " -h ".. sql_config.hostname ..
-        " -P ".. sql_config.port ..
-        " -u ".. sql_config.username ..
-        " -D ".. sql_config.database ..
+        " -h ".. config.hostname ..
+        " -P ".. config.port ..
+        " -u ".. config.username ..
+        " -D ".. config.database ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return query, command, image_name
 end
 
 -- Execute a specific query on MariaDB with a given config
-function M.ExecuteMariaDBQuery(sql_config, sql_query)
+function M.ExecuteMariaDBQuery(config, sql_query)
     local docker = require('docker')
     docker.DockerExecute(
         M.BuildMariaDBQuery(
-            sql_config,
+            config,
             sql_query
         )
     )

@@ -2,7 +2,7 @@
 local M = {}
 
 -- Build a given PostgresQuery with a specific config
-function M.BuildPostgresSQLQuery(sql_config, sql_query)
+function M.BuildPostgresSQLQuery(config, query)
     print("Psql")
 
     -- docker run \
@@ -12,24 +12,24 @@ function M.BuildPostgresSQLQuery(sql_config, sql_query)
     -- -e POSTGRES_DB=TESTDB \
     -- -p 5432:5432 postgres:latest
     local image_name = 'postgres'
-    local sql_command = "bash -c 'PGPASSWORD=".. sql_config.password ..
+    local sql_command = "bash -c 'PGPASSWORD=".. config.password ..
         " psql" ..
-        " -h ".. sql_config.hostname ..
-        " -p ".. sql_config.port ..
-        " -U ".. sql_config.username ..
-        " -d ".. sql_config.database ..
+        " -h ".. config.hostname ..
+        " -p ".. config.port ..
+        " -U ".. config.username ..
+        " -d ".. config.database ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return query, sql_command, image_name
 end
 
 -- Execute a given PostgresQuery with a specific config
-function M.ExecutePostgresSQLQuery(sql_config, sql_query)
+function M.ExecutePostgresSQLQuery(config, query)
     local docker = require('docker')
     docker.DockerExecute(
         M.BuildPostgresSQLQuery(
-            sql_config,
-            sql_query
+            config,
+            query
         )
     )
 end
