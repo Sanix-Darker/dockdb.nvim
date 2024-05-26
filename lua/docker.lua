@@ -11,6 +11,8 @@ end
 
 ---Execute Docker command With DB query and CLI binded and print on command prompt
 function M.DockerExecute(query, command, image_name)
+    -- TODO: inject in the stdin
+    -- >>> docker exec .... bash/mysql (SELECT...)
     -- Replace the placeholder with the selected text
     local to_execute = "echo -ne '" .. query .. "' | docker exec -i ".. M.GetDockerContainerID(image_name) .. " " .. command
 
