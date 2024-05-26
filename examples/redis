@@ -1,2 +1,2 @@
-SET xkey "sanix darker"
-GET xkey
+SET xkey "sanix darker" \n
+GET xkey \n
