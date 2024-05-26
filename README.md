@@ -24,8 +24,8 @@ to an 'already' running `DataBase Container`.
 - [x] Query Mysql.
 - [x] Query PostgreSql.
 - [x] Query MariaDB.
+- [x] Query Oracle.
 - [ ] Query MongoDB (comming soon).
-- [ ] Query Oracle (comming soon).
 - [ ] Query MSsql (comming soon).
 - [ ] Query Redis.
 - [ ] Query MemCached.
@@ -108,28 +108,39 @@ See [examples](./examples/) for queries to play.
 Options values are extremly flexible depending on the database you're using,
 for example :
 ```lua
+-- common config you could set on all engine
+local common_conf = {
+    username = 'u',
+    password = 'p',
+    database = 'TESTDB',
+    hostname = 'localhost',
+}
 local dockdb_ops = {
     mysql = {
-        username = 'u',
-        password = 'p',
-        database = 'TESTDB',
-        hostname = 'localhost',
         port = '3306'
     },
     postgresql = {
-        username = 'u',
-        password = 'p',
-        database = 'TESTDB',
-        hostname = 'localhost',
         port = '5432'
     },
+    oracle = {
+        oracle_sid = 'XE',
+        username = 'system', -- this will be used instead of 'u'
+        port = '1521'
+    },
     mongodb = {}
-    -- ....
 }
--- ... and so on
--- then forward it to dockdb
--- and you're all set
-require("dockdb.nvim").setup(dockdb_ops)
+for _, config in pairs(dockdb_ops) do
+    for k, v in pairs(common_conf) do
+        -- You can use this to set the config for a specific
+        -- engine to overide the defaulf from common_conf
+        -- like for oracle.
+        if config[k] == nil then
+            config[k] = v
+        end
+    end
+end
+-- then we call dockdb
+require("dockdb").setup(dockdb_ops)
 ```
 
 ## NOTE
