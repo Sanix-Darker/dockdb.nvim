@@ -1,6 +1,8 @@
 ---@class Oracle
 local M = {}
 
+local util = require('..lua.util')
+
 -- Build a specific query on Oracle with a given config
 function M.BuildOracleDBQuery(sql_config, sql_query)
     print("Oracle")
@@ -22,7 +24,7 @@ function M.BuildOracleDBQuery(sql_config, sql_query)
         "/".. sql_config.oracle_sid ..
         "'"
 
-    return sql_query, sql_command, image_name
+    return util.EscapeQuotes(sql_query), sql_command, image_name
 end
 
 -- Execute a specific query on Oracle with a given config
