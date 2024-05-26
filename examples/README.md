@@ -1,6 +1,6 @@
 ## HOW TO START DOCKER DBMS
 
-### [supported] POSTGRESQL
+### [SUPPORTED] POSTGRESQL
 
 With the given `.env.psql`, you can run:
 
@@ -10,7 +10,7 @@ $ docker run -d --rm \
     -p 5432:5432 postgres:latest
 ```
 
-### [supported] MYSQL / MARIADB
+### [SUPPORTED] MYSQL / MARIADB
 
 Same as psql, in `.env.mysql` for Mysql and MariaDB, you can just run:
 
@@ -22,6 +22,7 @@ $ docker run -d --rm \
 
 ### [SUPPORTED] ORACLE
 
+To run an Oracle database with docker, you can hit :
 ```bash
 $ docker run -d --rm \
     --env-file .env.oracle \
@@ -31,8 +32,11 @@ $ docker run -d --rm \
 ### MONGODB
 
 To start a mongoDB instance, you can run :
+
 ```bash
-$ docker run -d --env-file .env.mongodb -p 27017:27017 mongo:latest
+$ docker run -d --rm \
+    --env-file .env.mongodb \
+    -p 27017:27017 mongo:latest
 ```
 
 After that you can run queries directly to create the database and the collections.
