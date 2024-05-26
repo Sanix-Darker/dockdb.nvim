@@ -8,7 +8,7 @@ https://github.com/Sanix-Darker/dockdb.nvim/assets/22576758/08160855-4ba4-47de-a
 
 ## WHY
 
-While working with `SQL`, i wanted to bind my nvim flow with the way i run and test queries.
+While working with `SQL`, i wanted to bind my nvim edition flow with the way i run and test my queries.
 
 However, i wanted something extremly simple and light,
 with no 'third-party' lib/cli to install, so that on a fresh new server this should be working fine; so i made *dockdb.nvim* that run the visual selected query
@@ -26,10 +26,10 @@ to an 'already' running `DataBase Container`.
 - [x] Query MariaDB.
 - [x] Query Oracle.
 - [x] Query MongoDB.
-- [ ] Query Redis(Comming Soon).
+- [x] Query Redis.
 - [ ] Query MinIO(Comming Soon).
-- [ ] Query MemCached.
-- [ ] Query MSsql (not sure yet, see [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
+- [ ] Query MemCached(Comming Soon).
+- [ ] Query MSsql (not sure yet, MS sucks... see [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
 
 ## PROS
 
@@ -57,6 +57,16 @@ use 'Sanix-Darker/dockdb.nvim'
 - Using Vim-plug :
 ```vim
 Plug 'Sanix-Darker/dockdb.nvim'
+```
+
+- Using LazyNvim :
+```lua
+  {
+    "Sanix-Darker/dockdb.nvim",
+    opts = {
+      -- config stuff here
+    },
+  },
 ```
 
 ## HOW TO USE
@@ -107,6 +117,9 @@ local dockdb_ops = {
     },
     mongodb = {
         port = '27017'
+    },
+    redis = {
+        port = '6479'
     }
 }
 for _, config in pairs(dockdb_ops) do
