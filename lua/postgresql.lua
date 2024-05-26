@@ -1,8 +1,6 @@
 ---@class PostgresSql
 local M = {}
 
-local util = require('..lua.util')
-
 -- Build a given PostgresQuery with a specific config
 function M.BuildPostgresSQLQuery(sql_config, sql_query)
     print("Psql")
@@ -22,7 +20,7 @@ function M.BuildPostgresSQLQuery(sql_config, sql_query)
         " -d ".. sql_config.database ..
         "'"
 
-    return util.EscapeQuotes(sql_query), sql_command, image_name
+    return sql_query, sql_command, image_name
 end
 
 -- Execute a given PostgresQuery with a specific config
