@@ -29,7 +29,7 @@ function M.BuildMariaDBQuery(config, query)
 end
 
 -- Execute a specific query on MariaDB with a given config
-function M.ExecuteMariaDBQuery(config, sql_query)
+function M.ExecuteMariaDBQuery(config, query)
     if config == nil then
         error("ERROR: No '".. M.ENGINE_NAME .."' config options found !")
     end
@@ -37,7 +37,7 @@ function M.ExecuteMariaDBQuery(config, sql_query)
     docker.DockerExecute(
         M.BuildMariaDBQuery(
             config,
-            sql_query
+            query
         )
     )
 end

@@ -18,7 +18,7 @@ function M.BuildMySQLQuery(config, query)
     -- -e MYSQL_ROOT_PASSWORD=p \
     -- -p 3306:3306 mysql:latest
 
-    local sql_command = "bash -c 'MYSQL_PWD=".. config.password ..
+    local command = "bash -c 'MYSQL_PWD=".. config.password ..
         " " .. M.ENGINE_CLI ..
         " -h ".. config.hostname ..
         " -P ".. config.port ..
@@ -26,7 +26,7 @@ function M.BuildMySQLQuery(config, query)
         " -D ".. config.database ..
         "'"
 
-    return query, sql_command, M.ENGINE_IMAGE
+    return query, command, M.ENGINE_IMAGE
 end
 
 -- Build a specific query on Mysql with a given config
