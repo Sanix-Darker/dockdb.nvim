@@ -50,39 +50,14 @@ The simple idea behind this plugin is to:
 ## HOW TO INSTALL
 
 - Using Packer :
-    ```lua
-    use 'Sanix-Darker/dockdb.nvim'
-    ```
+```lua
+use 'Sanix-Darker/dockdb.nvim'
+```
 
 - Using Vim-plug :
-    ```
-    Plug 'Sanix-Darker/dockdb.nvim'
-    ```
-
-    Then in your `init.lua` file you can just run :
-
-    ```lua
-    require('dockdb.nvim').setup({
-        -- mandatory
-        -- your config should be explicitelly provided
-    })
-    ```
-
-- Using Lazy.nvim :
-
-    ```lua
-    require('dockdb').setup()
-    ```
-    or
-
-    ```lua
-    return {
-      {
-        "Sanix-Darker/dockdb.nvim",
-        config = true,
-      },
-    }
-    ```
+```vim
+Plug 'Sanix-Darker/dockdb.nvim'
+```
 
 ## HOW TO USE
 
@@ -94,12 +69,15 @@ The simple idea behind this plugin is to:
 
 Execute the visual selected lines on the first found running container :
 
-- `DockDbExecuteMongo`
-- `DockDbExecuteMySQL`
-- `DockDbExecuteMSSQL`
-- `DockDbExecuteMariaDB`
-- `DockDbExecuteOracle`
-- `DockDbExecutePostgresSQL`
+- `DockDbExecMongo`
+- `DockDbExecMySQL`
+- `DockDbExecMSSQL`
+- `DockDbExecMariaDB`
+- `DockDbExecOracle`
+- `DockDbExecPostgresSQL`
+- `DockDbExecRedis`
+- `DockDbExecMinIO`
+- `DockDbExecMemCached`
 
 See [examples](./examples/) for queries to play.
 

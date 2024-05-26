@@ -2,6 +2,7 @@ local Docker = require('..lua.docker')
 local Mysql = require('..lua.mysql')
 local MariaDB = require('..lua.mariadb')
 local Postgresql = require('..lua.postgresql')
+local Oracle = require('..lua.oracle')
 local vim = {}
 vim.api = {}
 vim.fn = {}
@@ -83,6 +84,29 @@ describe('BuildPostgresSQLQuery', function()
         local expected_image_name = 'postgres'
 
         local query, command, image_name = Postgresql.BuildPostgresSQLQuery(sql_config, sql_query)
+        assert.are.equal(expected_query, query)
+        assert.are.equal(expected_command, command)
+        assert.are.equal(expected_image_name, image_name)
+    end)
+end)
+
+describe('BuildOracleQuery', function()
+    it('should build a Oracle query command with the given config', function()
+        local sql_config = {
+            hostname = 'localhost',
+            port = 1521,
+            username = 'user',
+            password = 'password',
+            database = 'my_database',
+            oracle_sid = 'XE'
+        }
+        local sql_query = 'SELECT * FROM my_table'
+
+        local expected_query = "SELECT * FROM my_table"
+        local expected_command = "bash -c 'sqlplus user/password@//localhost:1521/XE'"
+        local expected_image_name = 'gvenzl/oracle-xe'
+
+        local query, command, image_name = Oracle.BuildOracleDBQuery(sql_config, sql_query)
         assert.are.equal(expected_query, query)
         assert.are.equal(expected_command, command)
         assert.are.equal(expected_image_name, image_name)

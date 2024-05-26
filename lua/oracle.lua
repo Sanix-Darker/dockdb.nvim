@@ -14,7 +14,7 @@ function M.BuildOracleDBQuery(sql_config, sql_query)
 
     local image_name = 'gvenzl/oracle-xe'
     local sql_command = "bash -c '" ..
-        " sqlplus" ..
+        "sqlplus" ..
         " ".. sql_config.username .. -- 'system' should be set here as default
         "/".. sql_config.password ..
         "@//".. sql_config.hostname ..
