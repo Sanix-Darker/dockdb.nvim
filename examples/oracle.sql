@@ -11,7 +11,7 @@ CREATE TABLE employees (
 DESCRIBE employees;
 
 -- Insert a row into the employees table
-INSERT INTO employees (FIRST_NAME, SALARY) VALUES('darker', 60000);
+INSERT INTO employees (FIRST_NAME, SALARY) VALUES('"darker"', 60000);
 
 -- Update the salary of the employee with employee_id 1
 UPDATE employees
