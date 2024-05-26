@@ -1,0 +1,2 @@
+set akey 0 3600 11\r\nHello World
+get akey

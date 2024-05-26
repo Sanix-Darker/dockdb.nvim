@@ -27,8 +27,8 @@ to an 'already' running `DataBase Container`.
 - [x] Query Oracle.
 - [x] Query MongoDB.
 - [x] Query Redis.
-- [ ] Query MemCached(Comming Soon).
-- [ ] Query MSsql (not sure yet, MS sucks... see [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
+- [x] Query MemCached.
+- [ ] Query MSsql (not yet [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
 
 ## PROS
 
@@ -118,6 +118,9 @@ local dockdb_ops = {
     },
     redis = {
         port = '6479'
+    }
+    memcached = {
+        port = '11211'
     }
 }
 for _, config in pairs(dockdb_ops) do

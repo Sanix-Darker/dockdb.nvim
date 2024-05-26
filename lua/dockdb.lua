@@ -6,6 +6,8 @@ local mssql = require('mssql')
 local mariadb = require('mariadb')
 local oracle = require('oracle')
 local redis = require('redis')
+local memcached = require('memcached')
+
 local util = require('util')
 
 ---@class DockDb
@@ -65,6 +67,14 @@ function M.RunRedisQuery()
     util.ExecuteWithOpts(
         M.opts.redis,
         redis.ExecuteRedisQuery
+    )
+end
+
+-- On Memcached execute query with the good set of config
+function M.RunMemcachedQuery()
+    util.ExecuteWithOpts(
+        M.opts.memcached,
+        memcached.ExecuteMemcachedQuery
     )
 end
 
