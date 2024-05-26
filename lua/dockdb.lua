@@ -27,7 +27,6 @@ function M.RunPostgresSqlQuery()
     )
 end
 
--- TODO:
 -- On MongoDB execute query with the good set of config
 function M.RunMongoDBQuery()
     util.ExecuteWithOpts(
