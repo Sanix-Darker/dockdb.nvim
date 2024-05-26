@@ -27,7 +27,6 @@ to an 'already' running `DataBase Container`.
 - [x] Query Oracle.
 - [x] Query MongoDB.
 - [x] Query Redis.
-- [ ] Query MinIO(Comming Soon).
 - [ ] Query MemCached(Comming Soon).
 - [ ] Query MSsql (not sure yet, MS sucks... see [#2](https://github.com/Sanix-Darker/dockdb.nvim/pull/2)).
 
@@ -86,7 +85,6 @@ Execute the visual selected lines on the first found running container :
 - `DockDbExecOracle`
 - `DockDbExecPostgresSQL`
 - `DockDbExecRedis`
-- `DockDbExecMinIO`
 - `DockDbExecMemCached`
 
 See [examples](./examples/) for queries to play.
